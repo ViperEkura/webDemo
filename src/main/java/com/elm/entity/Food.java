@@ -1,5 +1,10 @@
 package com.elm.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 class Food {
     private Integer foodId;
     private String foodName;
