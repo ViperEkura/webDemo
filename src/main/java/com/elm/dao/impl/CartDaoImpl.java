@@ -52,7 +52,7 @@ public class CartDaoImpl implements CartDao {
 
             return stmt.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException("添加购物车失败", e);
+            throw new RuntimeException("数据库查询失败", e);
         }
     }
 
@@ -70,7 +70,7 @@ public class CartDaoImpl implements CartDao {
 
             return stmt.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException("更新购物车失败", e);
+            throw new RuntimeException("数据库查询失败", e);
         }
     }
 
@@ -87,7 +87,7 @@ public class CartDaoImpl implements CartDao {
 
             return stmt.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException("删除购物车记录失败", e);
+            throw new RuntimeException("数据库查询失败", e);
         }
     }
 }

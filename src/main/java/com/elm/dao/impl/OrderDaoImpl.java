@@ -15,8 +15,23 @@ import java.util.List;
 public class OrderDaoImpl implements OrderDao {
 
     @Override
-    public int createOrder(Orders orders) {
-        return 0;
+    public int createOrder(Orders orders)  {
+        String sql = "INSERT INTO orders " +
+                "(userId, businessId, orderDate, orderTotal, daId, orderDate) " +
+                "VALUES (?, ?, ?, ?, ?, ?)";
+        try (Connection conn = DbUtil.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.setString(1, orders.getUserId());
+            stmt.setInt(2, orders.getBusinessId());
+            stmt.setString(3, orders.getOrderDate());
+            stmt.setDouble(4, orders.getOrderTotal());
+            stmt.setInt(5, orders.getDaId());
+            stmt.setInt(6, orders.getOrderState());
+
+            return  stmt.executeUpdate();
+        }catch (SQLException e) {
+            throw new RuntimeException("数据库查询失败", e);
+        }
     }
 
     @Override
@@ -33,7 +48,7 @@ public class OrderDaoImpl implements OrderDao {
                 order.setOrderId(rs.getInt("orderId"));
                 order.setUserId(rs.getString("userId"));
                 order.setBusinessId(rs.getInt("businessId"));
-                order.setOrderDate(rs.getString("orderDate")); // 注意日期格式转换
+                order.setOrderDate(rs.getString("orderDate"));
                 order.setOrderTotal(rs.getDouble("orderTotal"));
                 order.setDaId(rs.getInt("daId"));
                 order.setOrderState(rs.getInt("orderState"));
@@ -41,14 +56,37 @@ public class OrderDaoImpl implements OrderDao {
                 ordersList.add(order);
             }
         } catch (SQLException e) {
-            System.err.println(e.getMessage());
+            throw new RuntimeException("数据库查询失败", e);
         }
         return ordersList;
     }
 
     @Override
     public Orders getOrdersById(Integer orderId) {
+        String sql = "SELECT * FROM Orders WHERE orderId = ?";
+        Orders order = new Orders();
 
+        try (Connection conn = DbUtil.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, orderId);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                order.setOrderId(rs.getInt("orderId"));
+                order.setUserId(rs.getString("userId"));
+                order.setBusinessId(rs.getInt("businessId"));
+                order.setOrderDate(rs.getString("orderDate"));
+                order.setOrderTotal(rs.getDouble("orderTotal"));
+                order.setDaId(rs.getInt("daId"));
+                order.setOrderState(rs.getInt("orderState"));
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("数据库查询失败", e);
+        }
+
+        return order;
     }
 
     @Override

@@ -20,8 +20,7 @@ public class UserDaoImpl implements UserDao {
             stmt.setInt(4, user.getUserSex());
             return stmt.executeUpdate();
         } catch (Exception e) {
-            System.err.println(e.getMessage());
-            return 0;
+            throw new RuntimeException("数据库查询失败", e);
         }
     }
 
@@ -36,7 +35,7 @@ public class UserDaoImpl implements UserDao {
                 return rs.getInt(1);
             }
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            throw new RuntimeException("数据库查询失败", e);
         }
         return 0;
     }
@@ -60,7 +59,7 @@ public class UserDaoImpl implements UserDao {
                 return user;
             }
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            throw new RuntimeException("数据库查询失败", e);
         }
         return null;
     }
