@@ -1,4 +1,4 @@
-package com.elm.dto;
+package com.elm.entity;
 import  java.util.List;
 import lombok.Getter;
 import lombok.Setter;

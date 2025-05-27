@@ -1,7 +1,7 @@
 package com.elm.dao.impl;
 
 import com.elm.dao.UserDao;
-import com.elm.dto.User;
+import com.elm.entity.User;
 import com.elm.utils.DbUtil;
 
 import java.sql.Connection;
@@ -20,7 +20,7 @@ public class UserDaoImpl implements UserDao {
             pstmt.setInt(4, user.getUserSex());
             return pstmt.executeUpdate();
         } catch (Exception e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
             return 0;
         }
     }
@@ -36,7 +36,7 @@ public class UserDaoImpl implements UserDao {
                 return rs.getInt(1);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
         }
         return 0;
     }
@@ -60,7 +60,7 @@ public class UserDaoImpl implements UserDao {
                 return user;
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
         }
         return null;
     }

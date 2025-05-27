@@ -1,4 +1,4 @@
-package com.elm.dto;
+package com.elm.entity;
 
 class Food {
     private Integer foodId;

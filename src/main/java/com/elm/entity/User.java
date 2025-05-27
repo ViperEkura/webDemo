@@ -1,5 +1,5 @@
 
-package com.elm.dto;
+package com.elm.entity;
 import lombok.Getter;
 import lombok.Setter;
 
