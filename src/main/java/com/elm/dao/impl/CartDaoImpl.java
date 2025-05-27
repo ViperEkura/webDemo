@@ -19,9 +19,9 @@ public class CartDaoImpl implements CartDao {
         String sql = "SELECT * FROM cart WHERE userId = ?";
 
         try(Connection conn = DbUtil.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(sql)){
-            pstmt.setInt(1, userId);
-            ResultSet rs = pstmt.executeQuery();
+            PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
             Cart cart = null;
             while (rs.next()){
                 cart = new Cart();
@@ -43,14 +43,14 @@ public class CartDaoImpl implements CartDao {
         String sql = "INSERT INTO cart (foodId, businessId, userId, quantity) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = DbUtil.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            pstmt.setInt(1, cart.getFoodId());
-            pstmt.setInt(2, cart.getBusinessId());
-            pstmt.setString(3, cart.getUserId());
-            pstmt.setInt(4, cart.getQuantity());
+            stmt.setInt(1, cart.getFoodId());
+            stmt.setInt(2, cart.getBusinessId());
+            stmt.setString(3, cart.getUserId());
+            stmt.setInt(4, cart.getQuantity());
 
-            return pstmt.executeUpdate();
+            return stmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("添加购物车失败", e);
         }
@@ -61,14 +61,14 @@ public class CartDaoImpl implements CartDao {
         String sql = "UPDATE cart SET quantity = ? WHERE businessId = ? AND userId = ? AND foodId = ?";
 
         try (Connection conn = DbUtil.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            pstmt.setInt(1, cart.getQuantity());
-            pstmt.setInt(2, cart.getBusinessId());
-            pstmt.setString(3, cart.getUserId());
-            pstmt.setInt(4, cart.getFoodId());
+            stmt.setInt(1, cart.getQuantity());
+            stmt.setInt(2, cart.getBusinessId());
+            stmt.setString(3, cart.getUserId());
+            stmt.setInt(4, cart.getFoodId());
 
-            return pstmt.executeUpdate();
+            return stmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("更新购物车失败", e);
         }
@@ -79,13 +79,13 @@ public class CartDaoImpl implements CartDao {
         String sql = "DELETE FROM cart WHERE businessId = ? AND userId = ? AND foodId = ?";
 
         try (Connection conn = DbUtil.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            pstmt.setInt(1, cart.getBusinessId());
-            pstmt.setString(2, cart.getUserId());
-            pstmt.setInt(3, cart.getFoodId());
+            stmt.setInt(1, cart.getBusinessId());
+            stmt.setString(2, cart.getUserId());
+            stmt.setInt(3, cart.getFoodId());
 
-            return pstmt.executeUpdate();
+            return stmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("删除购物车记录失败", e);
         }

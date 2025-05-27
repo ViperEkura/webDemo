@@ -18,10 +18,10 @@ public class BusinessDaoImpl implements BusinessDao {
         String sql = "SELECT * FROM business WHERE orderTypeId = ?";
 
         try (Connection conn = DbUtil.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            pstmt.setInt(1, orderTypeId);
-            ResultSet rs = pstmt.executeQuery();
+            stmt.setInt(1, orderTypeId);
+            ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
                 Business business = new Business();
@@ -49,10 +49,10 @@ public class BusinessDaoImpl implements BusinessDao {
         String sql = "SELECT * FROM business WHERE businessId = ?";
 
         try (Connection conn = DbUtil.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            pstmt.setInt(1, businessId);
-            ResultSet rs = pstmt.executeQuery();
+            stmt.setInt(1, businessId);
+            ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
                 Business business = new Business();

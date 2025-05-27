@@ -13,12 +13,12 @@ public class UserDaoImpl implements UserDao {
     public int saveUser(User user) {
         String sql = "INSERT INTO user(userId, password, userName, userSex) VALUES(?,?,?,?)";
         try (Connection conn = DbUtil.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, user.getUserId());
-            pstmt.setString(2, user.getPassword());
-            pstmt.setString(3, user.getUserName());
-            pstmt.setInt(4, user.getUserSex());
-            return pstmt.executeUpdate();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, user.getUserId());
+            stmt.setString(2, user.getPassword());
+            stmt.setString(3, user.getUserName());
+            stmt.setInt(4, user.getUserSex());
+            return stmt.executeUpdate();
         } catch (Exception e) {
             System.err.println(e.getMessage());
             return 0;
@@ -29,9 +29,9 @@ public class UserDaoImpl implements UserDao {
     public int getUserById(String userId) {
         String sql = "SELECT COUNT(*) FROM user WHERE userId = ?";
         try (Connection conn = DbUtil.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, userId);
-            ResultSet rs = pstmt.executeQuery();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, userId);
+            ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 return rs.getInt(1);
             }
@@ -45,10 +45,10 @@ public class UserDaoImpl implements UserDao {
     public User getUserByIdByPass(String userId, String password) {
         String sql = "SELECT * FROM user WHERE userId = ? AND password = ?";
         try (Connection conn = DbUtil.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, userId);
-            pstmt.setString(2, password);
-            ResultSet rs = pstmt.executeQuery();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, userId);
+            stmt.setString(2, password);
+            ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 User user = new User();
                 user.setUserId(rs.getString("userId"));
