@@ -20,12 +20,12 @@ public class BusinessServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        resp.setContentType("application/json");
-        resp.setCharacterEncoding("UTF-8");
-        String action = req.getPathInfo();
-        PrintWriter out = resp.getWriter();
-
         try {
+            resp.setContentType("application/json");
+            resp.setCharacterEncoding("UTF-8");
+            String action = req.getPathInfo();
+            PrintWriter out = resp.getWriter();
+
             switch (action) {
                 case "/listBusinessByOrderTypeId" -> {
                     Integer orderTypeId = Integer.parseInt(req.getParameter("orderTypeId"));

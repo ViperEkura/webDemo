@@ -14,13 +14,13 @@ import java.util.List;
 public class CartDaoImpl implements CartDao {
 
     @Override
-    public List<Cart> listCartByUserId(Integer userId) {
+    public List<Cart> listCartByUserId(String userId) {
         List<Cart> listCart = new ArrayList<>();
         String sql = "SELECT * FROM cart WHERE userId = ?";
 
         try(Connection conn = DbUtil.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)){
-            stmt.setInt(1, userId);
+            stmt.setString(1, userId);
             ResultSet rs = stmt.executeQuery();
             Cart cart;
             while (rs.next()){

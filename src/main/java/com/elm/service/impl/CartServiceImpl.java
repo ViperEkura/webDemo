@@ -10,7 +10,7 @@ import java.util.List;
 public class CartServiceImpl implements CartService {
     CartDao cartDao = new CartDaoImpl();
     @Override
-    public List<Cart> listCartByUserId(Integer userId) {
+    public List<Cart> listCartByUserId(String userId) {
         return cartDao.listCartByUserId(userId);
     }
 

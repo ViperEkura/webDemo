@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-class Food {
+public class Food {
     private Integer foodId;
     private String foodName;
     private String foodExplain;

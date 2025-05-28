@@ -22,8 +22,6 @@ public class UserDaoImpl implements UserDao {
 
             return stmt.executeUpdate();
         } catch (Exception e) {
-            System.out.println(JsonUtil.toJson(user));
-            System.out.println(e.getMessage());
             throw new RuntimeException("数据库查询失败", e);
         }
     }

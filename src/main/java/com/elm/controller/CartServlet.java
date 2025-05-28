@@ -18,21 +18,6 @@ import java.util.List;
 @WebServlet("/CartController/*")
 public class CartServlet extends HttpServlet {
     private final CartService cartService = new CartServiceImpl();
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        resp.setContentType("application/json");
-        resp.setCharacterEncoding("UTF-8");
-        String action = req.getPathInfo();
-        PrintWriter out = resp.getWriter();
-
-        if (action.equals("/listCart")){
-            String userId = req.getParameter("userId");
-            List<Cart> cartList =  cartService.listCartByUserId(Integer.parseInt(userId));
-            out.println(JsonUtil.toJson(cartList));
-        }
-    }
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("application/json");
@@ -41,6 +26,11 @@ public class CartServlet extends HttpServlet {
         PrintWriter out = resp.getWriter();
 
         switch (action){
+            case "/listCart" -> {
+                String userId = req.getParameter("userId");
+                List<Cart> cartList =  cartService.listCartByUserId(userId);
+                out.println(JsonUtil.toJson(cartList));
+            }
             case "/saveCart" -> {
                 Cart cart = JsonUtil.fromJson(req.getReader(), Cart.class);
                 int result = cartService.saveCart(cart);

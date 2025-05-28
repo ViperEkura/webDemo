@@ -10,12 +10,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb810c45-e30f-48e5-be33-8f2dc9e4d251" name="更改" comment="修改请求处理方式">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/db.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elm/controller/FoodServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elm/dao/FoodDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elm/dao/impl/FoodDaoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elm/service/FoodService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elm/service/impl/FoodServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/elm/controller/OrdersServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/elm/controller/OrdersServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/elm/controller/BusinessServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/elm/controller/BusinessServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/elm/controller/CartServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/elm/controller/CartServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/elm/controller/UserServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/elm/controller/UserServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/elm/dao/CartDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/elm/dao/CartDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/elm/dao/impl/CartDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/elm/dao/impl/CartDaoImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/elm/dao/impl/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/elm/dao/impl/UserDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/elm/utils/DbUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/elm/utils/DbUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/elm/entity/Food.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/elm/entity/Food.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/elm/service/CartService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/elm/service/CartService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/elm/service/impl/CartServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/elm/service/impl/CartServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,7 +205,7 @@
       <workItem from="1748347820617" duration="3986000" />
       <workItem from="1748351818338" duration="1894000" />
       <workItem from="1748415562317" duration="13951000" />
-      <workItem from="1748434241076" duration="1577000" />
+      <workItem from="1748434241076" duration="4134000" />
     </task>
     <task id="LOCAL-00001" summary="commit code">
       <option name="closed" value="true" />
