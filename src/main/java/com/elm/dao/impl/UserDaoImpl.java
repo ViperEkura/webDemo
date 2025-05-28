@@ -27,18 +27,18 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public int getUserById(String userId) {
-        String sql = "SELECT COUNT(*) FROM user WHERE userId = ?";
+        String sql = "SELECT COUNT(*) AS total FROM user WHERE userId = ?"; // 使用别名
         try (Connection conn = DbUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, userId);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                return rs.getInt(1);
+                return rs.getInt("total");
             }
+            return 0;
         } catch (Exception e) {
             throw new RuntimeException("数据库查询失败", e);
         }
-        return 0;
     }
 
     @Override

@@ -25,8 +25,8 @@ public class UserServlet extends HttpServlet {
             PrintWriter out = resp.getWriter();
 
             if (action.equals("/getUserById")) {
-                String userId = req.getParameter("userId");
-                int count = userService.getUserById(userId);
+                User user = JsonUtil.fromJson(req.getReader(), User.class);
+                int count = userService.getUserById(user.getUserId());
                 out.print(JsonUtil.toJson(count));
             } else {
                 resp.sendError(HttpServletResponse.SC_NOT_FOUND);
@@ -46,15 +46,20 @@ public class UserServlet extends HttpServlet {
 
             switch (action) {
                 case "/saveUser" -> {
-                    User user = JsonUtil.fromJson(req.getReader(), User.class);
+                    User user = new User();
+                    user.setUserId(req.getParameter("userId"));
+                    user.setPassword(req.getParameter("password"));
+                    user.setUserName(req.getParameter("userName"));
+                    user.setUserSex(Integer.parseInt(req.getParameter("userSex")));
+
                     int result = userService.saveUser(user);
                     out.print(JsonUtil.toJson(result));
                 }
                 case "/getUserByIdByPass" -> {
-                    User user = JsonUtil.fromJson(req.getReader(), User.class);
-                    User dbUser = userService.getUserByIdByPass(user.getUserId(), user.getPassword());
+                    String userId = req.getParameter("userId");
+                    String password = req.getParameter("password");
+                    User dbUser = userService.getUserByIdByPass(userId, password);
                     out.print(JsonUtil.toJson(dbUser));
-                    System.out.println(JsonUtil.toJson(dbUser));
                 }
                 default -> resp.sendError(HttpServletResponse.SC_NOT_FOUND);
             }

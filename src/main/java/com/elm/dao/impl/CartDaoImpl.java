@@ -22,7 +22,7 @@ public class CartDaoImpl implements CartDao {
             PreparedStatement stmt = conn.prepareStatement(sql)){
             stmt.setInt(1, userId);
             ResultSet rs = stmt.executeQuery();
-            Cart cart = null;
+            Cart cart;
             while (rs.next()){
                 cart = new Cart();
                 cart.setCartId(rs.getInt("cartId"));

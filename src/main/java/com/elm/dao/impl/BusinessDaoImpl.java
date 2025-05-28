@@ -22,9 +22,10 @@ public class BusinessDaoImpl implements BusinessDao {
 
             stmt.setInt(1, orderTypeId);
             ResultSet rs = stmt.executeQuery();
+            Business business;
 
             while (rs.next()) {
-                Business business = new Business();
+                business = new Business();
                 business.setBusinessId(rs.getInt("businessId"));
                 business.setBusinessName(rs.getString("businessName"));
                 business.setBusinessAddress(rs.getString("businessAddress"));

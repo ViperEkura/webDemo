@@ -19,7 +19,7 @@ public class BusinessServlet extends HttpServlet {
     private final BusinessService businessService = new BusinessServiceImpl();
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
         String action = req.getPathInfo();
