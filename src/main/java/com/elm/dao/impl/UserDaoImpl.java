@@ -11,15 +11,14 @@ import java.sql.ResultSet;
 public class UserDaoImpl implements UserDao {
     @Override
     public int saveUser(User user) {
-        String sql = "INSERT INTO user(userId, password, userName, userSex) VALUES(?,?,?,?)";
+        String sql = "INSERT INTO user(userId, password) VALUES(?,?)";
         try (Connection conn = DbUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, user.getUserId());
             stmt.setString(2, user.getPassword());
-            stmt.setString(3, user.getUserName());
-            stmt.setInt(4, user.getUserSex());
             return stmt.executeUpdate();
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             throw new RuntimeException("数据库查询失败", e);
         }
     }

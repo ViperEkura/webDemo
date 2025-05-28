@@ -1,9 +1,11 @@
 package com.elm.utils;
 
+
 import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonSyntaxException;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.lang.reflect.Type;
 
 public class JsonUtil {
@@ -11,16 +13,12 @@ public class JsonUtil {
     public static String toJson(Object obj) {
         return gson.toJson(obj);
     }
-    public static <T> T fromJson(BufferedReader reader, Class<T> clazz) throws IOException {
+    public static <T> T fromJson(BufferedReader reader, Class<T> clazz)
+            throws JsonSyntaxException, JsonIOException {
         return gson.fromJson(reader, clazz);
     }
-    public static <T> T fromJson(BufferedReader reader, Type type) throws IOException {
+    public static <T> T fromJson(BufferedReader reader, Type type)
+            throws JsonSyntaxException, JsonIOException {
         return gson.fromJson(reader, type);
-    }
-    public static <T> T fromJson(String json, Class<T> clazz) {
-        return gson.fromJson(json, clazz);
-    }
-    public static <T> T fromJson(String json, Type type) {
-        return gson.fromJson(json, type);
     }
 }

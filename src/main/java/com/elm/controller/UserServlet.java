@@ -5,7 +5,6 @@ import com.elm.service.UserService;
 import com.elm.service.impl.UserServiceImpl;
 import com.elm.utils.JsonUtil;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,12 +18,12 @@ public class UserServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        resp.setContentType("application/json");
-        resp.setCharacterEncoding("UTF-8");
-        String action = req.getPathInfo();
-        PrintWriter out = resp.getWriter();
-
         try {
+            resp.setContentType("application/json");
+            resp.setCharacterEncoding("UTF-8");
+            String action = req.getPathInfo();
+            PrintWriter out = resp.getWriter();
+
             if (action.equals("/getUserById")) {
                 String userId = req.getParameter("userId");
                 int count = userService.getUserById(userId);
@@ -38,27 +37,31 @@ public class UserServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("application/json");
-        resp.setCharacterEncoding("UTF-8");
-        String action = req.getPathInfo();
-        PrintWriter out = resp.getWriter();
-
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         try {
+            resp.setContentType("application/json");
+            resp.setCharacterEncoding("UTF-8");
+            String action = req.getPathInfo();
+            PrintWriter out = resp.getWriter();
+            User user = new User();
+
             switch (action) {
                 case "/saveUser" -> {
-                    User user = JsonUtil.fromJson(req.getReader(), User.class);
+                    user.setUserId(req.getParameter("userId"));
+                    user.setPassword(req.getParameter("password"));
                     int result = userService.saveUser(user);
                     out.print(JsonUtil.toJson(result));
                 }
                 case "/getUserByIdByPass" -> {
-                    User loginUser = JsonUtil.fromJson(req.getReader(), User.class);
-                    User dbUser = userService.getUserByIdByPass(loginUser.getUserId(), loginUser.getPassword());
+                    String userId = req.getParameter("userId");
+                    String password = req.getParameter("password");
+                    User dbUser = userService.getUserByIdByPass(userId, password);
                     out.print(JsonUtil.toJson(dbUser));
                 }
                 default -> resp.sendError(HttpServletResponse.SC_NOT_FOUND);
             }
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
         }
     }
