@@ -3,6 +3,7 @@ package com.elm.dao.impl;
 import com.elm.dao.UserDao;
 import com.elm.entity.User;
 import com.elm.utils.DbUtil;
+import com.elm.utils.JsonUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,8 +19,10 @@ public class UserDaoImpl implements UserDao {
             stmt.setString(2, user.getPassword());
             stmt.setString(3, user.getUserName());
             stmt.setInt(4, user.getUserSex());
+
             return stmt.executeUpdate();
         } catch (Exception e) {
+            System.out.println(JsonUtil.toJson(user));
             System.out.println(e.getMessage());
             throw new RuntimeException("数据库查询失败", e);
         }
