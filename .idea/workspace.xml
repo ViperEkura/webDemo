@@ -11,9 +11,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cb810c45-e30f-48e5-be33-8f2dc9e4d251" name="更改" comment="commit code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/elm/Test.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/elm/controller/UserServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/elm/controller/UserServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/elm/dao/OrderDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/elm/dao/OrderDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/elm/dao/impl/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/elm/dao/impl/UserDaoImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/elm/utils/JsonUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/elm/utils/JsonUtil.java" afterDir="false" />
     </list>
@@ -194,7 +192,7 @@
       <workItem from="1748345604076" duration="2203000" />
       <workItem from="1748347820617" duration="3986000" />
       <workItem from="1748351818338" duration="1894000" />
-      <workItem from="1748415562317" duration="5506000" />
+      <workItem from="1748415562317" duration="7215000" />
     </task>
     <task id="LOCAL-00001" summary="commit code">
       <option name="closed" value="true" />

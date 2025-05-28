@@ -43,20 +43,18 @@ public class UserServlet extends HttpServlet {
             resp.setCharacterEncoding("UTF-8");
             String action = req.getPathInfo();
             PrintWriter out = resp.getWriter();
-            User user = new User();
 
             switch (action) {
                 case "/saveUser" -> {
-                    user.setUserId(req.getParameter("userId"));
-                    user.setPassword(req.getParameter("password"));
+                    User user = JsonUtil.fromJson(req.getReader(), User.class);
                     int result = userService.saveUser(user);
                     out.print(JsonUtil.toJson(result));
                 }
                 case "/getUserByIdByPass" -> {
-                    String userId = req.getParameter("userId");
-                    String password = req.getParameter("password");
-                    User dbUser = userService.getUserByIdByPass(userId, password);
+                    User user = JsonUtil.fromJson(req.getReader(), User.class);
+                    User dbUser = userService.getUserByIdByPass(user.getUserId(), user.getPassword());
                     out.print(JsonUtil.toJson(dbUser));
+                    System.out.println(JsonUtil.toJson(dbUser));
                 }
                 default -> resp.sendError(HttpServletResponse.SC_NOT_FOUND);
             }
