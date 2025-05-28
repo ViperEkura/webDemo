@@ -32,12 +32,20 @@ public class CartServlet extends HttpServlet {
                 out.println(JsonUtil.toJson(cartList));
             }
             case "/saveCart" -> {
-                Cart cart = JsonUtil.fromJson(req.getReader(), Cart.class);
+                Cart cart = new Cart();
+                cart.setBusinessId(Integer.parseInt(req.getParameter("businessId")));
+                cart.setFoodId(Integer.parseInt(req.getParameter("foodId")));
+                cart.setUserId(req.getParameter("userId"));
+
                 int result = cartService.saveCart(cart);
                 out.println(JsonUtil.toJson(result));
             }
             case "/updateCart" -> {
-                Cart cart = JsonUtil.fromJson(req.getReader(), Cart.class);
+                Cart cart = new Cart();
+                cart.setBusinessId(Integer.parseInt(req.getParameter("businessId")));
+                cart.setFoodId(Integer.parseInt(req.getParameter("foodId")));
+                cart.setUserId(req.getParameter("userId"));
+                cart.setQuantity(Integer.parseInt(req.getParameter("quantity")));
                 int result = cartService.updateCart(cart);
                 out.println(JsonUtil.toJson(result));
             }

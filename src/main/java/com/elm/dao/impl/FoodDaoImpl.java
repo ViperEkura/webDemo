@@ -16,6 +16,7 @@ public class FoodDaoImpl implements FoodDao {
     public List<Food> listFoodByBusinessId(Integer businessId) {
         String sql = "SELECT * FROM food WHERE businessId = ?";
         List<Food> foodList = new ArrayList<>();
+        System.out.println(foodList);
 
         try (Connection conn = DbUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -33,11 +34,12 @@ public class FoodDaoImpl implements FoodDao {
                     food.setBusinessId(rs.getInt("businessId"));
                     food.setRemarks(rs.getString("remarks"));
                     foodList.add(food);
+
                 }
             }
 
         } catch (SQLException e) {
-            throw new RuntimeException("根据商家ID查询食品列表失败，商家ID: " + businessId, e);
+            throw new RuntimeException("数据库查询失败", e);
         }
         return foodList;
     }
