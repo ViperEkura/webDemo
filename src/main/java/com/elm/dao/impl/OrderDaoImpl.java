@@ -9,27 +9,43 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class OrderDaoImpl implements OrderDao {
 
     @Override
-    public int createOrder(Orders orders)  {
+    public int createOrders(Orders orders)  {
         String sql = "INSERT INTO orders " +
-                "(userId, businessId, orderDate, orderTotal, daId, orderDate) " +
-                "VALUES (?, ?, ?, ?, ?, ?)";
+                "(userId, businessId, orderTotal, daId, orderDate) " +
+                "VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = DbUtil.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(sql)){
+            PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
+            LocalDateTime now = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            String formattedDate = now.format(formatter);
+
             stmt.setString(1, orders.getUserId());
             stmt.setInt(2, orders.getBusinessId());
-            stmt.setString(3, orders.getOrderDate());
-            stmt.setDouble(4, orders.getOrderTotal());
-            stmt.setInt(5, orders.getDaId());
-            stmt.setInt(6, orders.getOrderState());
+            stmt.setDouble(3, orders.getOrderTotal());
+            stmt.setInt(4, orders.getDaId());
+            stmt.setString(5, formattedDate);
+            stmt.executeUpdate();
 
-            return  stmt.executeUpdate();
+            // 获取生成的主键
+            try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    return generatedKeys.getInt(1);
+                } else {
+                    throw new RuntimeException("创建订单失败，未获得主键。");
+                }
+            }
+
         }catch (SQLException e) {
+            System.out.println(e.getMessage());
             throw new RuntimeException("数据库查询失败", e);
         }
     }

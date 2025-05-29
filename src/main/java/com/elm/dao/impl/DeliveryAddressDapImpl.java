@@ -22,6 +22,7 @@ public class DeliveryAddressDapImpl implements DeliveryAddressDao {
 
             while (rs.next()) {
                 DeliveryAddress address = new DeliveryAddress();
+                address.setDaId(Integer.parseInt(rs.getString("DaId")));
                 address.setUserId(rs.getString("userId"));
                 address.setContactName(rs.getString("contactName"));
                 address.setContactSex(rs.getInt("contactSex"));

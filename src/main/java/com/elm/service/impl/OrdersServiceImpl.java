@@ -13,7 +13,7 @@ public class OrdersServiceImpl implements OrdersService {
 
     @Override
     public int createOrders(Orders orders) {
-        return orderDao.createOrder(orders);
+        return orderDao.createOrders(orders);
     }
 
     @Override

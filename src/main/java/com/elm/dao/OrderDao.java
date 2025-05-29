@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface OrderDao {
-    int createOrder(Orders orders);
+    int createOrders(Orders orders);
     List<Orders> listOrdersByUserId(String userId);
     Orders getOrdersById(Integer orderId);
     int addOrderDetails(Integer orderId, List<OrderDetailet> details);

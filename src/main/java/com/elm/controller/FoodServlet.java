@@ -30,7 +30,6 @@ public class FoodServlet extends HttpServlet {
                     List<Food> listFood = foodService.listFoodByBusinessId(businessId);
                     out.println(JsonUtil.toJson(listFood));
                 }
-
                 default -> resp.sendError(HttpServletResponse.SC_NOT_FOUND);
             }
 
