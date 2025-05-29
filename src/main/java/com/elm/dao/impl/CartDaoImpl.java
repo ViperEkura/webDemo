@@ -57,28 +57,11 @@ public class CartDaoImpl implements CartDao {
 
     @Override
     public int updateCart(Cart cart) {
-        String querySql = "SELECT quantity FROM cart WHERE businessId = ? AND userId = ? AND foodId = ?";
         String updateSql = "UPDATE cart SET quantity = ? WHERE businessId = ? AND userId = ? AND foodId = ?";
-        int existingQuantity;
-        try (Connection conn = DbUtil.getConnection();
-             PreparedStatement queryStmt = conn.prepareStatement(querySql)){
-                queryStmt.setInt(1, cart.getBusinessId());
-                queryStmt.setString(2, cart.getUserId());
-                queryStmt.setInt(3, cart.getFoodId());
-                ResultSet rs = queryStmt.executeQuery();
-                if (rs.next()) {
-                    existingQuantity = rs.getInt("quantity");
-                } else {
-                    throw new RuntimeException("购物车中没有该商品记录");
-                }
-        }catch (Exception e){
-            throw new RuntimeException("数据库查询失败", e);
-        }
 
         try (Connection conn = DbUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(updateSql)) {
-            int newQuantity = existingQuantity + cart.getQuantity();
-            stmt.setInt(1, newQuantity);
+            stmt.setInt(1, cart.getQuantity());
             stmt.setInt(2, cart.getBusinessId());
             stmt.setString(3, cart.getUserId());
             stmt.setInt(4, cart.getFoodId());

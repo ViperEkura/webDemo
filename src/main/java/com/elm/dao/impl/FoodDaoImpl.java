@@ -16,7 +16,6 @@ public class FoodDaoImpl implements FoodDao {
     public List<Food> listFoodByBusinessId(Integer businessId) {
         String sql = "SELECT * FROM food WHERE businessId = ?";
         List<Food> foodList = new ArrayList<>();
-        System.out.println(foodList);
 
         try (Connection conn = DbUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {

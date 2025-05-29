@@ -29,7 +29,6 @@ public class FoodServlet extends HttpServlet {
                     Integer businessId = Integer.parseInt(req.getParameter("businessId"));
                     List<Food> listFood = foodService.listFoodByBusinessId(businessId);
                     out.println(JsonUtil.toJson(listFood));
-                    System.out.println(JsonUtil.toJson(listFood));
                 }
 
                 default -> resp.sendError(HttpServletResponse.SC_NOT_FOUND);

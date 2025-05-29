@@ -19,43 +19,51 @@ import java.util.List;
 public class CartServlet extends HttpServlet {
     private final CartService cartService = new CartServiceImpl();
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        resp.setContentType("application/json");
-        resp.setCharacterEncoding("UTF-8");
-        String action = req.getPathInfo();
-        PrintWriter out = resp.getWriter();
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp){
+        try {
+            resp.setContentType("application/json");
+            resp.setCharacterEncoding("UTF-8");
+            String action = req.getPathInfo();
+            PrintWriter out = resp.getWriter();
 
-        switch (action){
-            case "/listCart" -> {
-                String userId = req.getParameter("userId");
-                List<Cart> cartList =  cartService.listCartByUserId(userId);
-                out.println(JsonUtil.toJson(cartList));
-            }
-            case "/saveCart" -> {
-                Cart cart = new Cart();
-                cart.setBusinessId(Integer.parseInt(req.getParameter("businessId")));
-                cart.setFoodId(Integer.parseInt(req.getParameter("foodId")));
-                cart.setUserId(req.getParameter("userId"));
+            switch (action){
+                case "/listCart" -> {
+                    String userId = req.getParameter("userId");
+                    List<Cart> cartList =  cartService.listCartByUserId(userId);
+                    out.println(JsonUtil.toJson(cartList));
+                }
+                case "/saveCart" -> {
+                    Cart cart = new Cart();
+                    cart.setBusinessId(Integer.parseInt(req.getParameter("businessId")));
+                    cart.setFoodId(Integer.parseInt(req.getParameter("foodId")));
+                    cart.setUserId(req.getParameter("userId"));
 
-                int result = cartService.saveCart(cart);
-                out.println(JsonUtil.toJson(result));
+                    int result = cartService.saveCart(cart);
+                    out.println(JsonUtil.toJson(result));
+                }
+                case "/updateCart" -> {
+                    Cart cart = new Cart();
+                    cart.setBusinessId(Integer.parseInt(req.getParameter("businessId")));
+                    cart.setFoodId(Integer.parseInt(req.getParameter("foodId")));
+                    cart.setUserId(req.getParameter("userId"));
+                    cart.setQuantity(Integer.parseInt(req.getParameter("quantity")));
+                    int result = cartService.updateCart(cart);
+                    out.println(JsonUtil.toJson(result));
+                }
+                case  "/removeCart" -> {
+                    Cart cart = new Cart();
+                    cart.setBusinessId(Integer.parseInt(req.getParameter("businessId")));
+                    cart.setFoodId(Integer.parseInt(req.getParameter("foodId")));
+                    cart.setUserId(req.getParameter("userId"));
+                    int result = cartService.removeCart(cart);
+                    out.println(JsonUtil.toJson(result));
+                }
+                default -> resp.sendError(HttpServletResponse.SC_NOT_FOUND);
             }
-            case "/updateCart" -> {
-                Cart cart = new Cart();
-                cart.setBusinessId(Integer.parseInt(req.getParameter("businessId")));
-                cart.setFoodId(Integer.parseInt(req.getParameter("foodId")));
-                cart.setUserId(req.getParameter("userId"));
-                cart.setQuantity(Integer.parseInt(req.getParameter("quantity")));
-                int result = cartService.updateCart(cart);
-                out.println(JsonUtil.toJson(result));
-            }
-            case  "/removeCart" -> {
-                Cart cart = JsonUtil.fromJson(req.getReader(), Cart.class);
-                int result = cartService.removeCart(cart);
-                out.println(JsonUtil.toJson(result));
-            }
-            default -> resp.sendError(HttpServletResponse.SC_NOT_FOUND);
+        } catch (Exception e){
+            System.err.println(e.getMessage());
         }
+
     }
 
 }

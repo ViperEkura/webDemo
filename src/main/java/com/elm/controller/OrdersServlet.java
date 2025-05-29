@@ -24,16 +24,20 @@ public class OrdersServlet extends HttpServlet {
     private final OrdersService service = new OrdersServiceImpl();
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String path = req.getPathInfo();
-        switch (path) {
-            case "/createOrder" -> createOrder(req, resp);
-            case "/addOrderDetails" -> addOrderDetails(req, resp);
-            case "/updateOrderState" -> updateOrderState(req, resp);
-            case "/deleteOrderById" -> deleteOrderById(req, resp);
-            case "/listOrdersByUserId" -> listOrdersByUserId(req, resp);
-            case "/getOrdersById" -> getOrdersById(req, resp);
-            default -> resp.sendError(HttpServletResponse.SC_NOT_FOUND, "API Not Found");
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+        try {
+            String path = req.getPathInfo();
+            switch (path) {
+                case "/createOrder" -> createOrder(req, resp);
+                case "/addOrderDetails" -> addOrderDetails(req, resp);
+                case "/updateOrderState" -> updateOrderState(req, resp);
+                case "/deleteOrderById" -> deleteOrderById(req, resp);
+                case "/listOrdersByUserId" -> listOrdersByUserId(req, resp);
+                case "/getOrdersById" -> getOrdersById(req, resp);
+                default -> resp.sendError(HttpServletResponse.SC_NOT_FOUND, "API Not Found");
+            }
+        } catch (Exception e){
+            System.err.println(e.getMessage());
         }
     }
 
