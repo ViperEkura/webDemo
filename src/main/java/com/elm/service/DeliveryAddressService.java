@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface DeliveryAddressService {
     List<DeliveryAddress> istDeliveryAddressByUserId(String userId);
+
+    int saveDeliveryAddress(DeliveryAddress address);
 }
