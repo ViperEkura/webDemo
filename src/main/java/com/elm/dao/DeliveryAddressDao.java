@@ -6,6 +6,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface DeliveryAddressDao {
-    List<DeliveryAddress> istDeliveryAddressByUserId(String userId);
+    List<DeliveryAddress> listDeliveryAddressByUserId(String userId);
     int saveDeliveryAddress(DeliveryAddress address);
 }

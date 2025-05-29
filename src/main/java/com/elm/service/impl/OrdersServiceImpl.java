@@ -12,7 +12,7 @@ public class OrdersServiceImpl implements OrdersService {
     OrderDao orderDao = new OrderDaoImpl();
 
     @Override
-    public int createOrder(Orders orders) {
+    public int createOrders(Orders orders) {
         return orderDao.createOrder(orders);
     }
 

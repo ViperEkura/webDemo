@@ -28,7 +28,7 @@ public class OrdersServlet extends HttpServlet {
         try {
             String path = req.getPathInfo();
             switch (path) {
-                case "/createOrder" -> createOrder(req, resp);
+                case "/createOrders" -> createOrders(req, resp);
                 case "/addOrderDetails" -> addOrderDetails(req, resp);
                 case "/updateOrderState" -> updateOrderState(req, resp);
                 case "/deleteOrderById" -> deleteOrderById(req, resp);
@@ -41,10 +41,10 @@ public class OrdersServlet extends HttpServlet {
         }
     }
 
-    private void createOrder(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    private void createOrders(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         BufferedReader reader = req.getReader();
         Orders order = JsonUtil.fromJson(reader, Orders.class);
-        int result = service.createOrder(order);
+        int result = service.createOrders(order);
 
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");

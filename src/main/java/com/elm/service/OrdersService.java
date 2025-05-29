@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface OrdersService {
 
-    int createOrder(Orders orders);
+    int createOrders(Orders orders);
     List<Orders> listOrdersByUserId(String userId);
     Orders getOrdersById(Integer orderId);
     int addOrderDetails(Integer orderId, List<OrderDetailet> details);

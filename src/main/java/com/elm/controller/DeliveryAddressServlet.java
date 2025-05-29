@@ -38,9 +38,8 @@ public class DeliveryAddressServlet extends HttpServlet {
                     //TODO
                 }
                 case "/listDeliveryAddressByUserId" ->{
-                    String userId = req.getParameter("uerId");
-                    List<DeliveryAddress> adressList = service.istDeliveryAddressByUserId(userId);
-                    System.out.println(adressList);
+                    String userId = req.getParameter("userId");
+                    List<DeliveryAddress> adressList = service.listDeliveryAddressByUserId(userId);
                     out.println(JsonUtil.toJson(adressList));
                 }
                 default ->  resp.sendError(HttpServletResponse.SC_NOT_FOUND);

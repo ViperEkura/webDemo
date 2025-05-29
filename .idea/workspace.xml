@@ -10,13 +10,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb810c45-e30f-48e5-be33-8f2dc9e4d251" name="更改" comment="修改请求处理方式">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/elm/dao/impl/DeliveryAddressDapImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/elm/controller/DeliveryAddressServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/elm/controller/DeliveryAddressServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/elm/controller/DeliveryAdressServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/elm/controller/OrdersServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/elm/controller/OrdersServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/elm/dao/DeliveryAddressDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/elm/dao/DeliveryAddressDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/elm/dao/impl/DeliveryAddressDapImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/elm/dao/impl/DeliveryAddressDapImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/elm/service/DeliveryAddressService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/elm/service/DeliveryAddressService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/elm/service/OrdersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/elm/service/OrdersService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/elm/service/impl/DeliveryAddressServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/elm/service/impl/DeliveryAddressServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/elm/service/impl/OrdersServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/elm/service/impl/OrdersServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -199,7 +201,7 @@
       <workItem from="1748415562317" duration="13951000" />
       <workItem from="1748434241076" duration="7956000" />
       <workItem from="1748442218554" duration="578000" />
-      <workItem from="1748490837085" duration="4137000" />
+      <workItem from="1748490837085" duration="7423000" />
     </task>
     <task id="LOCAL-00001" summary="commit code">
       <option name="closed" value="true" />

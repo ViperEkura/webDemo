@@ -5,7 +5,7 @@ import com.elm.entity.DeliveryAddress;
 import java.util.List;
 
 public interface DeliveryAddressService {
-    List<DeliveryAddress> istDeliveryAddressByUserId(String userId);
+    List<DeliveryAddress> listDeliveryAddressByUserId(String userId);
 
     int saveDeliveryAddress(DeliveryAddress address);
 }

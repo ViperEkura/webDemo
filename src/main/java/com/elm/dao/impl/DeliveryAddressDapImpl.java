@@ -7,12 +7,11 @@ import com.elm.utils.DbUtil;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DeliveryAddressDapImpl implements DeliveryAddressDao {
-    public List<DeliveryAddress> istDeliveryAddressByUserId(String userId){
+    public List<DeliveryAddress> listDeliveryAddressByUserId(String userId){
         List<DeliveryAddress> addresses = new ArrayList<>();
         String sql = "SELECT * FROM deliveryaddress WHERE userId = ?";
 

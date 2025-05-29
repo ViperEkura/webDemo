@@ -9,8 +9,8 @@ import java.util.List;
 
 public class DeliveryAddressServiceImpl implements DeliveryAddressService {
     DeliveryAddressDao deliveryAddressDao = new DeliveryAddressDapImpl();
-    public  List<DeliveryAddress> istDeliveryAddressByUserId(String userId){
-        return  deliveryAddressDao.istDeliveryAddressByUserId(userId);
+    public  List<DeliveryAddress> listDeliveryAddressByUserId(String userId){
+        return  deliveryAddressDao.listDeliveryAddressByUserId(userId);
     }
 
     @Override
