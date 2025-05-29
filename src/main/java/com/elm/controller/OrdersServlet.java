@@ -43,14 +43,10 @@ public class OrdersServlet extends HttpServlet {
 
     private void createOrders(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         Orders order = new Orders();
-        System.out.println(req.getParameter("userId"));
-        System.out.println(req.getParameter("businessId"));
-        System.out.println(req.getParameter("daId"));
-        System.out.println(req.getParameter("orderTotal"));
 
         order.setUserId(req.getParameter("userId"));
         order.setBusinessId(Integer.parseInt(req.getParameter("businessId")));
-        order.setDaId(Integer.parseInt(req.getParameter("daId")));
+        order.setDaId(Integer.parseInt(req.getParameter("daId"))); //null
         order.setOrderTotal(Double.parseDouble(req.getParameter("orderTotal")));
         int result = service.createOrders(order);
 

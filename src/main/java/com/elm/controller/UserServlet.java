@@ -17,26 +17,6 @@ public class UserServlet extends HttpServlet {
     private final UserService userService = new UserServiceImpl();
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        try {
-            resp.setContentType("application/json");
-            resp.setCharacterEncoding("UTF-8");
-            String action = req.getPathInfo();
-            PrintWriter out = resp.getWriter();
-
-            if (action.equals("/getUserById")) {
-                User user = JsonUtil.fromJson(req.getReader(), User.class);
-                int count = userService.getUserById(user.getUserId());
-                out.print(JsonUtil.toJson(count));
-            } else {
-                resp.sendError(HttpServletResponse.SC_NOT_FOUND);
-            }
-        } catch (Exception e) {
-            resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
-        }
-    }
-
-    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         try {
             resp.setContentType("application/json");
@@ -54,6 +34,11 @@ public class UserServlet extends HttpServlet {
 
                     int result = userService.saveUser(user);
                     out.print(JsonUtil.toJson(result));
+                }
+                case "/getUserById" -> {
+                    String userId = req.getParameter("userId");
+                    int count = userService.getUserById(userId);
+                    out.println(JsonUtil.toJson(count));
                 }
                 case "/getUserByIdByPass" -> {
                     String userId = req.getParameter("userId");

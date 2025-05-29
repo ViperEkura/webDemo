@@ -54,4 +54,30 @@ public class DeliveryAddressDapImpl implements DeliveryAddressDao {
         }
     }
 
+    public DeliveryAddress getDeliveryAddressById(Integer daId){
+        String sql = "SELECT * FROM deliveryaddress WHERE daId = ?";
+
+        try (Connection conn = DbUtil.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, daId);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                DeliveryAddress address = new DeliveryAddress();
+                address.setDaId(rs.getInt("daId"));
+                address.setUserId(rs.getString("userId"));
+                address.setContactName(rs.getString("contactName"));
+                address.setContactSex(rs.getInt("contactSex"));
+                address.setContactTel(rs.getString("contactTel"));
+                address.setAddress(rs.getString("address"));
+                return address;
+            } else {
+                return null;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("数据库查询失败", e);
+        }
+    }
+
 }

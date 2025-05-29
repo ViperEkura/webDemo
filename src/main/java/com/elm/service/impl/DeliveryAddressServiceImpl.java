@@ -18,4 +18,9 @@ public class DeliveryAddressServiceImpl implements DeliveryAddressService {
         return deliveryAddressDao.saveDeliveryAddress(address);
     }
 
+    @Override
+    public DeliveryAddress getDeliveryAddressById(Integer daId) {
+        return deliveryAddressDao.getDeliveryAddressById(daId);
+    }
+
 }
